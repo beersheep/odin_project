@@ -1,24 +1,23 @@
 require 'pry' 
+require 'benchmark'
 
 class Sort 
   def bubble_sort(arr)
-    until sorted?(arr) do 
+    final_arr = []
+
+    while arr.any? do 
       arr.each_with_index do |n, i|
         if (n <=> arr[i + 1]) == 1 
           arr[i], arr[i + 1] = arr[i + 1], arr[i]
         end
       end
+
+      final_arr.unshift(arr.pop)
     end
-    arr
-  end
-
-  private 
-
-  def sorted?(arr)
-    arr.each_with_index do |n, i| 
-      return true if arr[i].nil?
-
-      return false if (n <=> arr[i + 1]) == 1
-    end
+    
+    final_arr
   end
 end
+
+
+
