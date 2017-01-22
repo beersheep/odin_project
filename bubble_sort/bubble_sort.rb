@@ -1,18 +1,18 @@
 require 'pry' 
 require 'benchmark'
 
-class Sort 
-  def bubble_sort(arr)
+class Array 
+  def bubble_sort
     final_arr = []
 
-    while arr.any? do 
-      arr.each_with_index do |n, i|
-        if (n <=> arr[i + 1]) == 1 
-          arr[i], arr[i + 1] = arr[i + 1], arr[i]
+    while self.any? do 
+      self.each_with_index do |n, i|
+        if (n <=> self[i + 1]) == 1 
+          self[i], self[i + 1] = self[i + 1], self[i]
         end
       end
 
-      final_arr.unshift(arr.pop)
+      final_arr.unshift(self.pop)
     end
     
     final_arr
