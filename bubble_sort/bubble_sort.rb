@@ -1,33 +1,21 @@
-require 'pry' 
-require 'benchmark'
-
 class Array 
   def bubble_sort
+    this = self.clone
     final_arr = []
 
-    while self.any? do 
-      self.each_with_index do |n, i|
-        unless self[i + 1].nil?
-          if block_given? 
-            comparison = yield(n, self[i + 1])
-          else 
-            comparison = (n <=> self[i + 1])
-          end
-            
-          if comparison >= 1 
-            self[i], self[i + 1] = self[i + 1], self[i]
-          end
+    while this.any? do 
+      this.each_with_index do |n, i|
+        unless this[i + 1].nil?
+          comparison = block_given? ? yield(n, this[i + 1]) : (n <=> this[i+1])
+          this[i], this[i + 1] = this[i + 1], this[i] if comparison >= 1 
         end
       end
 
-      final_arr.unshift(self.pop)
+      final_arr.unshift(this.pop)
     end
-    
+
     final_arr
   end
 
   alias_method :bubble_sort_by, :bubble_sort
 end
-
-
-
