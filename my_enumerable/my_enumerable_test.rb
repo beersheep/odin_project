@@ -34,4 +34,13 @@ class TestMyEnumerable < MiniTest::Test
 
     assert_equal(result, new_hash)
   end
+
+  def test_enumerator_respond_to_my_select
+    assert_respond_to(Array.new, :my_select)
+  end
+
+  def test_my_select
+    result = (1..5).to_a.my_select(&:odd?)
+    assert_equal(result, [1, 3, 5])
+  end
 end

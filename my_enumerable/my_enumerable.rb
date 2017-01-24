@@ -1,3 +1,4 @@
+require 'pry'
 
 module Enumerable
   def my_each
@@ -18,5 +19,12 @@ module Enumerable
     end
 
     self 
+  end
+
+  def my_select 
+    new_arr = []
+    self.my_each { |el|  new_arr.push(el) if yield(el) == true }
+
+    new_arr
   end
 end
