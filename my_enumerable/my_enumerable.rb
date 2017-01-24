@@ -27,4 +27,12 @@ module Enumerable
 
     new_arr
   end
+
+  def my_all? 
+    self.my_each do |el|
+      return false unless yield(el) 
+    end
+
+    return true
+  end
 end

@@ -43,4 +43,18 @@ class TestMyEnumerable < MiniTest::Test
     result = (1..5).to_a.my_select(&:odd?)
     assert_equal(result, [1, 3, 5])
   end
+
+  def test_enumerator_respond_to_my_all
+    assert_respond_to(Array.new, :my_all?)
+  end
+
+  def test_my_all
+    result = [1, 3, 5].my_all?(&:odd?)
+    assert_equal(true, result)
+  end
+
+  def test_my_all_2
+    result = [1, 4, 5].my_all?(&:odd?)
+    assert_equal(false, result)
+  end
 end
